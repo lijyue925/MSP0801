@@ -14,6 +14,9 @@
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <local:ResultConverter x:Name="ResultConverter"></local:ResultConverter>
+        </Grid.Resources>
         <StackPanel Grid.Row="0"></StackPanel>
 
         <StackPanel Grid.Row="1">
@@ -26,7 +29,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBlock Text="結果"></TextBlock>
-            <TextBox Name="Result" Text="{Binding Result}"></TextBox>
+            <TextBox Name="Result" Text="{Binding Result}" Foreground="{Binding Result, Converter={StaticResource ResultConverter}}"></TextBox>
             <Button x:Name="btn1" Content="運算" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
