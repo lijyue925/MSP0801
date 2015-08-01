@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json;
 
 //空白頁項目範本收錄在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -34,7 +36,7 @@ namespace MSP0801
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             data.Result = data.Weight/Math.Pow(data.Height, 2);
-            await TextFileHelper.SaveTextFileAsync("data", data.Result.ToString());
+            await TextFileHelper.SaveTextFileAsync("data", JsonConvert.SerializeObject(data));
             var store = await TextFileHelper.LoadTextFileAsync("data");
             Height.Text = store;
         }
