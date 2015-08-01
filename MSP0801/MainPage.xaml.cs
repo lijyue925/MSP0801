@@ -22,9 +22,17 @@ namespace MSP0801
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private BMIData data;
         public MainPage()
         {
             this.InitializeComponent();
+            data = new BMIData();
+            this.DataContext = data;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            data.Result = data.Weight/Math.Pow(data.Height, 2);
         }
     }
 }

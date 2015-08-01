@@ -8,6 +8,26 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"></StackPanel>
 
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="身高"></TextBlock>
+            <TextBox Name="Height" Text="{Binding Height, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="體重"></TextBlock>
+            <TextBox Name="Weight" Text="{Binding Weight, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="結果"></TextBlock>
+            <TextBox Name="Result" Text="{Binding Result}"></TextBox>
+            <Button x:Name="btn1" Content="運算" Click="Button_Click"></Button>
+        </StackPanel>
     </Grid>
 </Page>
