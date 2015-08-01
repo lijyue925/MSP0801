@@ -55,7 +55,7 @@
         </ScrollViewer>
         <ScrollViewer Grid.Row="3">
             <Grid>
-                <GridView ItemsSource="{Binding Items}">
+                <GridView ItemsSource="{Binding Items}" ItemClick="ListViewBase_OnItemClick" IsItemClickEnabled="True" SelectionMode="None">
                     <GridView.ItemTemplate >
                         <DataTemplate >
                             <Grid Width="320" Height="100">

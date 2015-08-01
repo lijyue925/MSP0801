@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="MSP0801.DetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MSP0801"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid x:Name="widegrid">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="6" VerticalAlignment="Top" >
+                <Border.Background >
+                    <ImageBrush ImageSource="Assets/nopic.png" Stretch="Uniform" />
+                </Border.Background>
+                <Image Source="{Binding Picture1}" />
+            </Border>
+            <Grid Grid.Column="1" Margin="6">
+                <Grid.Resources >
+                    <Style TargetType="TextBlock" >
+                        <Setter Property="Margin" Value="6"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Name}" FontSize="32"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="地址" />
+                    <TextBlock Text="{Binding Add}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="電話" />
+                    <TextBlock Text="{Binding Tel}" />
+                </StackPanel>
+                <TextBlock Text="說明" FontWeight="Bold" Grid.Row="3"  />
+                <TextBlock Text="{Binding Description}" TextWrapping="WrapWholeWords"  Grid.Row="4" />
+                <TextBlock Text="旅遊資訊" FontWeight="Bold" Grid.Row="5"  />
+                <TextBlock Text="{Binding Travellinginfo}" TextWrapping="WrapWholeWords"  Grid.Row="6" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

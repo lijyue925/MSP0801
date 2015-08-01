@@ -28,7 +28,8 @@ namespace MSP0801
     {
         private BMIData data;
         private People people;
-        
+        public static Attractions attractionsdata;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -45,7 +46,7 @@ namespace MSP0801
 
             HttpClient client = new HttpClient();
             string source = await client.GetStringAsync("http://data.ntpc.gov.tw/od/data/api/A886239B-D7C1-4309-870F-E0F64D088025?$format=json");
-            Attractions attractionsdata = new Attractions();
+            attractionsdata = new Attractions();
             attractionsdata.Items = JsonConvert.DeserializeObject<ObservableCollection<Attraction>>(source);
             // 因為資料中所有的圖片都是空的, 所以故意加上一張圖片
             attractionsdata.Items[0].Picture1 = "https://upload.wikimedia.org/wikipedia/commons/3/36/Mount_Yu_Shan_-_Taiwan.jpg";
@@ -84,6 +85,12 @@ namespace MSP0801
             return people;
         }
 
-       
+
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            Attraction attraction = (Attraction)e.ClickedItem;
+            int index = attractionsdata.Items.IndexOf(attraction);
+            Frame.Navigate(typeof(DetailPage), index);
+        }
     }
 }
