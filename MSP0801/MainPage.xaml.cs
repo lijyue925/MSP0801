@@ -23,6 +23,7 @@ namespace MSP0801
     public sealed partial class MainPage : Page
     {
         private BMIData data;
+        
         public MainPage()
         {
             this.InitializeComponent();
@@ -30,9 +31,12 @@ namespace MSP0801
             this.DataContext = data;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             data.Result = data.Weight/Math.Pow(data.Height, 2);
+            await TextFileHelper.SaveTextFileAsync("data", data.Result.ToString());
+            var store = await TextFileHelper.LoadTextFileAsync("data");
+            Height.Text = store;
         }
     }
 }
