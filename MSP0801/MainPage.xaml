@@ -5,32 +5,89 @@
     xmlns:local="using:MSP0801"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="MainPage_OnLoaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <local:ResultConverter x:Name="ResultConverter"></local:ResultConverter>
         </Grid.Resources>
-        <StackPanel Grid.Row="0"></StackPanel>
+        <TextBlock Text="MSP UWP 0801" FontSize="30" VerticalAlignment="Center"  HorizontalAlignment="Center"></TextBlock>
 
-        <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1">
             <TextBlock Text="身高"></TextBlock>
             <TextBox Name="Height" Text="{Binding Height, Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
             <TextBlock Text="體重"></TextBlock>
             <TextBox Name="Weight" Text="{Binding Weight, Mode=TwoWay}"></TextBox>
-        </StackPanel>
-        <StackPanel Grid.Row="3">
             <TextBlock Text="結果"></TextBlock>
             <TextBox Name="Result" Text="{Binding Result}" Foreground="{Binding Result, Converter={StaticResource ResultConverter}}"></TextBox>
             <Button x:Name="btn1" Content="運算" Click="Button_Click"></Button>
         </StackPanel>
+        <ScrollViewer Grid.Row="2">
+            <ListBox ItemsSource="{Binding Items1}">
+                <ListBox.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromHorizontalOffset="300"/>
+                    </TransitionCollection>
+                </ListBox.ItemContainerTransitions>
+                <ListBox.ItemContainerStyle >
+                    <Style TargetType="ListBoxItem" >
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="6"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate >
+                    <DataTemplate >
+                        <Border Background="Blue">
+                            <StackPanel Margin="12,6,12,6">
+                                <TextBlock Text="{Binding Name}" FontSize="18" Foreground="White" />
+                                <TextBlock Text="{Binding Address}" FontSize="12" Foreground="White"  TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="3">
+            <Grid>
+                <GridView ItemsSource="{Binding Items}">
+                    <GridView.ItemTemplate >
+                        <DataTemplate >
+                            <Grid Width="320" Height="100">
+                                <Grid.ColumnDefinitions  >
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Margin="6" >
+                                    <Border.Background >
+                                        <ImageBrush ImageSource="Assets/nopic.png" Stretch="Uniform" />
+                                    </Border.Background>
+                                    <Image Source="{Binding Picture1}" />
+                                </Border>
+                                <Border Margin="6" Background="Green" Grid.Column="1">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel.Resources >
+                                            <Style TargetType="TextBlock" >
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <TextBlock Text="{Binding Name}" FontSize="21"/>
+                                        <TextBlock Text="{Binding Add}" TextTrimming="WordEllipsis" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <Grid x:Name="progressringGrid" Visibility="Collapsed">
+                    <ProgressRing x:Name="ring" Width="128" Height="128"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
